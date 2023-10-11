@@ -3,8 +3,11 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
 
-const Produto = require('./database/Produto')
+const Produto = require('./produtos/Produto')
+const produtoController =
+require ("./produtos/ProdutoController")
 
+app.use("/",produtoController);
 connection
     .authenticate()
     .then(()=>{
@@ -23,27 +26,10 @@ app.set('view engine', 'ejs');
 //definindo a pasta de arquivos estaticos
 app.use(express.static('public'));
 
-app.listen(8080, ()=>{
+app.listen(8000, ()=>{
     console.log("app rodando");
 });
 
 app.get("/", (req, res)=>{
     res.render("index");
 });
-
-app.get("/produto", (req, res)=>{
-    res.render("produto");
-});
-
-app.post("/salvarProduto", (req, res)=>{
-    var titulo = req.body.titulo;
-    var descricao = req.body.descricao;
-    Produto.create({
-        titulo: titulo,
-        descricao: descricao
-    }).then(()=> {
-        res.redirect("/");
-    });
-});
-
-

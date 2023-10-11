@@ -1,5 +1,5 @@
-<%- include('partials/header') %> 
-<%- include('partials/navbar') %> 
+<%- include('../partials/header') %> 
+<%- include('../partials/navbar') %> 
 
 <div class="container">
     <div class="card">
@@ -7,18 +7,18 @@
             Cadastro de Produto
         </div>
         <div class="card-body">
-            <form action="/salvarProduto" method="post">
+            <form action="/produto/atualizar" method="post">
                 <label>Titulo</label>
                 <input type="text" name="titulo" id="tituloProd"
-                class="form-control">
+                class="form-control" value="<%= produto.id %>">
                 <label>Descrição</label>
                 <textarea name="descricao" id="descProd"
                 class="form-control" cols="30" rows="10"></textarea>
-                <button class="btn btn-primary">Salvar</button>
+                <button class="btn btn-primary">Atualizar</button>
             </form>
         </div>
 
     </div>
 </div>
 
-<%- include('partials/footer') %> 
+<%- include('../partials/footer') %> 
